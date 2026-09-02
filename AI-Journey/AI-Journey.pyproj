@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AI_Journey.py" />
+    <Compile Include="Hello World.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
