@@ -1,6 +1,5 @@
 
-from operator import inv
-
+from collections import defaultdict
 
 def total_expenses(inventory):
     total = 0
@@ -20,13 +19,9 @@ items = [
     {"name": "Storage", "amount": 93.9, "category": "Furniture"},
 ]
 
-inventory = dict()
-inventory.setdefault("Clothing", []).append({"name": "Shirt", "amount": 20.0})
-inventory.setdefault("Clothing", []).append({"name": "Pants", "amount": 35.5})
-inventory.setdefault("Food", []).append({"name": "Icecream", "amount": 4.5})
-inventory.setdefault("Food", []).append({"name": "Pizza", "amount": 12.5})
-inventory.setdefault("Electronics", []).append({"name": "Microwave", "amount": 129.9})
-inventory.setdefault("Furniture", []).append({"name": "Storage", "amount": 93.9})
+inventory = defaultdict(list)
+for it in items:
+    inventory[it['category']].append(it)
 
 while True:
     category = input("Enter category: ").strip()
@@ -36,4 +31,8 @@ while True:
 
 key = category.strip().title()
 total = expenses_by_category(key, inventory)
-print(f"Total amount for {key}: {total}")
+
+if total == 0:
+    print(f"{key} was not found in inventory")
+else:
+    print(f"Total amount for {key}: {total}")
